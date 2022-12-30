@@ -31,7 +31,6 @@ class Brick(db.Model):
 
 class Item(db.Model):
     ID = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    bricks = db.relationship("Brick", backref="item", lazy=True)
     bricks = db.relationship(
         "Brick",
         secondary=bricks_items_table,
