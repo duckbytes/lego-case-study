@@ -25,8 +25,8 @@ class ItemStatus(enum.Enum):
 
 class Brick(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    designId = db.Column(db.Integer)
-    colorIds = db.Column(db.dialects.postgresql.ARRAY(db.Integer))
+    design_id = db.Column(db.Integer)
+    color_ids = db.Column(db.dialects.postgresql.ARRAY(db.Integer))
 
 
 class Item(db.Model):
