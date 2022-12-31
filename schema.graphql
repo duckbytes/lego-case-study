@@ -1,0 +1,41 @@
+schema {
+    query: Query
+}
+
+
+type PreferredItemResult {
+    item: Item
+    errors: [String]
+}
+
+type Query {
+    preferredItem: PreferredItemResult
+}
+
+
+enum ItemStatus {
+    Normal
+    Novelty
+    Outgoing
+    Discontinued
+}
+
+
+type Brick {
+    id: ID!
+    designId: Int
+    colorIds: [Int]
+}
+
+
+type Item {
+    id: ID!
+    bricks: [Brick]
+}
+
+
+type MasterData {
+    id: ID!
+    price: Int
+    status: ItemStatus
+}
