@@ -29,6 +29,12 @@ class Brick(db.Model):
     color_ids = db.Column(db.dialects.postgresql.ARRAY(db.Integer))
 
 
+class MasterData(db.Model):
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    price = db.Column(db.Integer)
+    status = db.Column(Enum(ItemStatus))
+
+
 class Item(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     bricks = db.relationship(
@@ -37,9 +43,5 @@ class Item(db.Model):
         lazy="dynamic",
         backref=db.backref("items", lazy="dynamic"),
     )
-
-
-class MasterData(db.Model):
-    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    price = db.Column(db.Integer)
-    status = db.Column(Enum(ItemStatus))
+    master_data_id = db.Column(UUID(as_uuid=True), db.ForeignKey(MasterData.id))
+    master_data = db.relationship("MasterData", foreign_keys=[master_data_id])
