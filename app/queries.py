@@ -1,6 +1,5 @@
 from app.determine_preferred_item import determine_preferred_item
 from app import models, schemas
-from flask import jsonify
 
 
 item_schema = schemas.ItemSchema()
